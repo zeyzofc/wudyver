@@ -7,7 +7,6 @@ import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 import Textinput from "@/components/ui/Textinput";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import SimpleBar from "simplebar-react";
 import axios from "axios";
 import {
@@ -17,7 +16,7 @@ import {
   clearPastes,
   setError,
   setLoading,
-} from "@/components/partials/app/paste/store"; // Asumsi path ke slice kamu
+} from "@/components/partials/app/paste/store"; // Path to your Redux slice
 
 const PasteManager = () => {
   const dispatch = useDispatch();
@@ -26,7 +25,6 @@ const PasteManager = () => {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [key, setKey] = useState("");
   const [syntax, setSyntax] = useState("text");
   const [expireIn, setExpireIn] = useState("");
   const [deleteKey, setDeleteKey] = useState("");
@@ -272,7 +270,8 @@ const PasteManager = () => {
                     <div className="col-span-full mt-4 p-4 bg-slate-900 rounded-xl border border-slate-700">
                       <h5 className="font-semibold text-purple-300 mb-2">Detail Paste:</h5>
                       <p className="text-slate-300 mb-1"><strong>Judul:</strong> {viewedPaste.title}</p>
-                      <p className="text-slate-300 mb-1"><strong>Konten:</strong><pre className="whitespace-pre-wrap text-sm bg-slate-800 p-2 rounded-md border border-slate-700">{viewedPaste.content}</pre></p>
+                      <p className="text-slate-300 mb-1"><strong>Konten:</strong></p>
+                      <pre className="whitespace-pre-wrap text-sm bg-slate-800 p-2 rounded-md border border-slate-700">{viewedPaste.content}</pre>
                       <p className="text-slate-300 mb-1"><strong>Syntax:</strong> {viewedPaste.syntax}</p>
                       {viewedPaste.expiresAt && (
                         <p className="text-slate-300 mb-1">
@@ -283,12 +282,12 @@ const PasteManager = () => {
                       <p className="text-slate-300">
                         <strong>Link:</strong>{" "}
                         <a
-                          href={`/${viewedPaste.key}`}
+                          href={`/api/tools/paste/v1?action=get&key=${viewedPaste.key}&output=html`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-400 hover:underline"
                         >
-                          {`/${viewedPaste.key}`}
+                          {`${viewedPaste.key}`}
                         </a>
                       </p>
                     </div>
@@ -343,15 +342,16 @@ const PasteManager = () => {
                   <Button
                     text={
                       loading ? (
-                        <span className="animate-spin mr-2">⟳</span> Membersihkan...
-                      </span>
-                    ) : (
-                      <span className="flex items-center justify-center">
-                        <span className="mr-2">🧹</span> Hapus Semua
-                      </span>
-                    )
-                  }
-                  className="bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white rounded-xl py-2 font-medium transition-all duration-300 transform hover:scale-[1.02] shadow-lg"
+                        <span className="flex items-center justify-center">
+                          <span className="animate-spin mr-2">⟳</span> Membersihkan...
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center">
+                          <span className="mr-2">🧹</span> Hapus Semua
+                        </span>
+                      )
+                    }
+                    className="bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white rounded-xl py-2 font-medium transition-all duration-300 transform hover:scale-[1.02] shadow-lg"
                     isLoading={loading}
                     disabled={loading}
                     onClick={handleClearAllPastes}
@@ -368,7 +368,7 @@ const PasteManager = () => {
                           <strong className="text-purple-300">Judul:</strong> {paste.title} -{" "}
                           <strong className="text-purple-300">Key:</strong>{" "}
                           <a
-                            href={`/${paste.key}`}
+                            href={`/api/tools/paste/v1?action=get&key=${paste.key}&output=html`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-400 hover:underline"
