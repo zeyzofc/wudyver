@@ -33,7 +33,7 @@
     "next": "^13.2.4",
     "rate-limiter-flexible": "latest",
     "react": "18.2.0",
-    "react-apexcharts": "^1.4.1",
+    "react-apexcharts": "^1.7.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-calendar": "^4.8.0",
     "react-chartjs-2": "^5.2.0",
