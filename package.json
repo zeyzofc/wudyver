@@ -9,10 +9,6 @@
     "lint": "next lint",
     "heroku-postbuild": "npm install --legacy-peer-deps && npm run build"
   },
-  "engines": {
-    "node": "18.x",
-    "npm": "9.x"
-  },
   "dependencies": {
     "@fullcalendar/core": "latest",
     "@fullcalendar/daygrid": "latest",
@@ -35,7 +31,7 @@
     "eslint-config-next": "latest",
     "framer-motion": "latest",
     "leaflet": "latest",
-    "next": "13.2.4",
+    "next": "latest",
     "rate-limiter-flexible": "latest",
     "react": "18.2.0",
     "react-apexcharts": "latest",
@@ -47,10 +43,11 @@
     "react-dropzone": "latest",
     "react-flatpickr": "latest",
     "react-hook-form": "latest",
-    "react-leaflet": "latest",
+    "react-leaflet": "^4.2.1",
     "react-quill": "latest",
     "react-redux": "latest",
     "react-select": "latest",
+    "react-svg-map": "latest",
     "react-table": "latest",
     "react-tailwindcss-datepicker": "latest",
     "react-toastify": "latest",
